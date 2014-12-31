@@ -1,0 +1,97 @@
+
+A B C D
+
+T T T T
+F T T T
+T F T T
+F F T T
+T T F T 
+F T F T
+T F F T
+F F F T 
+      F
+      
+      
+      
+ A B C D
+ T T T T
+ F T T T   
+ T F T T
+ F F T T
+ T T F T
+ F T F T   
+ T F F T
+ F F F T
+ T T T F
+ F T T F   
+ T F T F
+ F F T F
+ T T F F
+ F T F F   
+ T F F F
+ F F F F
+ 
+    
+ 
+
+
+ 
+ 
+       
+1. 2 Variable exercises
+i.  A B   A && !B
+    T T
+    T F
+    F T
+    F F
+
+ii.   A || !A
+		
+
+iii.  !(A || B)
+		
+
+iv.   !A && !B
+		
+
+v.    !((A && B) || !(A || B))
+			
+
+vi.   (A || B) && !(A && B)
+		
+
+
+
+
+2. 3 Variable exercises
+i.  A B C      A || B || C
+	? ? ?
+	? ? ?		
+     etc.
+
+ii.   A && B && C
+			
+
+iii.  !A || !B || !C
+			
+
+iv.   !(A && B) || !C
+		
+		
+
+v.    !A && !B || !C
+		
+
+
+vi.   !(A && B) || !(B && C) || (!A && C)
+			
+
+
+vii.  !(A || B) && !(B || C)
+		
+
+
+viii. (A || B || C) && !(A && B) && !(B && C)
+					
+
+
