@@ -12,7 +12,6 @@ F F F T
       F
       
       
-      
  A B C D
  T T T T
  F T T T   
@@ -30,6 +29,7 @@ F F F T
  F T F F   
  T F F F
  F F F F
+   
  
     
  
@@ -39,59 +39,202 @@ F F F T
  
        
 1. 2 Variable exercises
-i.  A B   A && !B
-    T T
-    T F
-    F T
-    F F
+i.  A B   A   &&    !B
+    T T   T  False  F
+    T F   T  True   T
+    F T   F  False  F 
+    F F   F  False  T
 
-ii.   A || !A
+
+
+
+ii.   A   || 	!A
+	  T  True   F
+	  T	 True   F
+	  F	 True   T
+	  F	 True   T
 		
 
-iii.  !(A || B)
+
+
+
+iii.  !(A   || 	B)
+	 F (T  True  T)
+	 F (T  True  F)
+	 F (F  True  T)
+	 T (F  False  F)
 		
 
-iv.   !A && !B
+
+
+
+iv.  A B   !A    &&   	!B
+	 F T    T    False   F
+	 F F    T    False   T
+	 T T    F    True    F
+	 T F    F    False   T
+		
+		
+		
 		
 
-v.    !((A && B) || !(A || B))
+v.    A B     !((A && B)  ||   	  !(A || B))
+	  T T	  F   (( T )   False  F (  T  )) 	// F OR F together gives F
+	  T	F	  T   (( F )   True   F (  T  ))
+	  F	T	  T   (( F )   True   F (  T  ))
+	  F F     T   (( F )   True   T (  F  ))
 			
 
-vi.   (A || B) && !(A && B)
+
+
+
+vi.   (A   ||   B)   &&       ! (A &&  B)
+	  (T    T   T)	 False	  F (T  T  T)
+      (T    T   F)   True     T (T  F  F)
+      (F    T   T)   True     T (F  F  T)
+      (F    F   F)   False    T (F  F  F)		// F AND F together gives F
+
+
+
+
+
+2. 3 Variable exercises						// IN CASE OF ADDITIONAL VARIABLE EG C, USE ORDER FOR A: T, F, T, F
+i.  A B C      A || B || C					// INCLUSIVE OR: AT LEAST 1 T'S OF THE 3 VARIABLES GIVES T
+	T T T		           	GIVES		 T
+    F T T				    GIVES		 T
+    T F T					GIVES		 T
+    F F T					GIVES		 T
+    T T F					GIVES		 T
+    F T F					GIVES		 T
+    T F F					GIVES		 T
+    F F F    				GIVES		 F
+
+
+
+
+
+ii. A B C 		 A  &&  B  &&  C				// T ONLY IF ALL VARIABLES ARE T -  A SINGLE F: GIVES F
+	T T T		            		GIVES	T
+    F T T				    		GIVES	F
+    T F T							GIVES	F
+    F F T							GIVES	F
+    T T F							GIVES	F	
+    F T F							GIVES	F
+    T F F							GIVES	F
+    F F F   						GIVES	F
+	  
+	  
+	  
+
+
+
+iii. A B C 			! A  ||  ! B  ||  ! C
+	 T T T		    F          F		F		GIVES	F
+     F T T			T	       F		F		GIVES	T
+     T F T			F		   T		F		GIVES	T
+     F F T			T		   T		F		GIVES	T
+     T T F			F		   F		T		GIVES	T
+     F T F			T		   F		T		GIVES	T
+     T F F			F		   T		T		GIVES	T
+     F F F   		T		   T		T		GIVES	T
+
+
+
+
+
+
+
+
+
+iv.  A B C			 !(A  &&   B) ||  !C	 
+	 T T T		     F(    T    ) ||  F     	GIVES	F		
+     F T T			 T(    F    ) ||  F	    	GIVES	T	
+     T F T			 T(	   F	) ||  F			GIVES	T
+     F F T			 T(    F    ) ||  F			GIVES	T	
+     T T F			 F(	   T 	) ||  T			GIVES	T
+     F T F			 T(	   F	) ||  T			GIVES	T
+     T F F			 T(	   F	) ||  T			GIVES	T
+     F F F  		 T(	   F	) ||  T			GIVES	T
+		
+		
+		
+		
+		
+		
+		
+
+v.   A B C				 !A 	&& 	 	!B  	||  	!C
+	 T T T		          F  	&&		F		||		F		GIVES	F || F		F
+     F T T				  T  	&&		F		||		F		GIVES	F || F		F
+     T F T				  F		&&		T		||		F		GIVES	F || F		F
+     F F T				  T		&&		T		||		F		GIVES	T || F		T
+     T T F				  F		&&		F		||		T		GIVES	F || T		T
+     F T F				  T		&&		F		||		T		GIVES	F || T		T
+     T F F				  F		&&		T		||		T		GIVES	F || T		T
+     F F F  			  T	 	&&		T		||		T		GIVES	T || T		T
+
+
+
+
+
+
+
+
+
+vi.  A B C				 !(A && B) || !(B && C) || (!A && C)
+	 T T T		         F(  T	 ) || F(   T  ) || (   F   )		GIVES	F
+     F T T				 T(  F   ) || F(   T  ) || (   T   )  		GIVES	T
+     T F T				 T(	 F	 ) || T(   F  ) || (   F   )	    GIVES	T
+     F F T				 T(  F   ) || T(   F  ) || (   T   )		GIVES	T	
+     T T F				 F(  T   ) || T(   F  ) || (   F   )		GIVES	T		
+     F T F				 T(	 F	 ) || T(   F  )	|| (   F   )        GIVES	T
+     T F F				 T(	 F	 ) || T(   F  ) || (   F   )        GIVES	T
+     F F F               T(  F   ) || T(   F  ) || (   F   )        GIVES	T
+		
+		
+		
+		
+		
+		
 		
 
 
 
-
-2. 3 Variable exercises
-i.  A B C      A || B || C
-	? ? ?
-	? ? ?		
-     etc.
-
-ii.   A && B && C
-			
-
-iii.  !A || !B || !C
-			
-
-iv.   !(A && B) || !C
-		
-		
-
-v.    !A && !B || !C
-		
+vii. A B C				 !(A || B) && !(B || C)
+	 T T T		         F(   T  ) && F(   T  )  		GIVES	F
+     F T T				 F(   T  ) && F(   T  ) 		GIVES	F
+     T F T				 F(   T  ) && F(   T  ) 		GIVES	F
+     F F T				 T(   F  ) && F(   T  ) 		GIVES	F
+     T T F				 F(   T  ) && F(   T  ) 		GIVES	F	
+     F T F				 F(   T  ) && F(   T  ) 		GIVES	F
+     T F F				 F(   T  ) && T(   F  ) 		GIVES	F
+     F F F  			 T(   F  ) && T(   F  ) 		GIVES	T
 
 
-vi.   !(A && B) || !(B && C) || (!A && C)
-			
 
 
-vii.  !(A || B) && !(B || C)
-		
 
 
-viii. (A || B || C) && !(A && B) && !(B && C)
-					
+
+
+
+
+
+viii. A B C						(A || B ||  C) && !(A && B) && !(B && C)
+	  T T T		            	(     T      ) && F(   T  ) && F(   T  )		GIVES	F
+      F T T				        (     T      ) && T(   F  ) && F(   T  )		GIVES	F
+      T F T						(     T      ) && T(   F  ) && T(   F  )		GIVES	T
+      F F T						(     T      ) && T(   F  ) && T(   F  )		GIVES	T
+      T T F						(     T      ) && F(   T  ) && T(   F  )		GIVES	F
+      F T F						(     T      ) && T(   F  ) && T(   F  )		GIVES	T
+      T F F						(     T      ) && T(   F  ) && T(   F  )		GIVES	T
+      F F F  					(     F      ) && T(   F  ) && T(   F  )		GIVES	F
+
+
+
+
+
+
+
 
 
